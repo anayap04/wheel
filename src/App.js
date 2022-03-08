@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useCallback } from "react";
+import "./App.css";
+import Wheel from "./wheel";
+import img from "./assets/img/logo.png";
+import useWindowSize from "react-use/lib/useWindowSize";
+import Confetti from "react-confetti";
 
-function App() {
+const App = () => {
+  const [winner, setWinner] = useState();
+  const { width, height } = useWindowSize();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app-info">
+      {winner ? <Confetti width={width} height={height} /> : null}
+      <img className="img-logo" src={img} />
+      <Wheel setWinner={setWinner} />
+      <div className="winner-title">{winner ? "Felicidades" : null}</div>
+      <div className="winner">{winner}</div>
     </div>
   );
-}
+};
 
 export default App;
