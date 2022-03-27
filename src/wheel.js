@@ -8,6 +8,8 @@ import prizes from "./csvjson.json";
 import titulo from "./assets/img/gigos.png";
 import "./wheel.css"
 
+let listUpdated = []
+
 const reproductionArray = (array = [], length = 0) => [
   ...Array(length)
     .fill("_")
@@ -17,18 +19,21 @@ const reproductionArray = (array = [], length = 0) => [
 function titleCase(str) {
   var splitStr = str.toLowerCase().split(' ');
   for (var i = 0; i < splitStr.length; i++) {
-      // You do not need to check if i is larger than splitStr length, as your for does that for you
-      // Assign it back to the array
-      splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);     
+    // You do not need to check if i is larger than splitStr length, as your for does that for you
+    // Assign it back to the array
+    splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
   }
   // Directly return the joined string
-  return splitStr.join(' '); 
+  return splitStr.join(' ');
 }
 
-const newPrizes = prizes.map((element) => ({
-  text:  titleCase(element.text),
+const newPrizes = listUpdated ? listUpdated.map((element) => ({
+  text: titleCase(element.text),
   image: titulo,
-}));
+})) : prizes.map((element) => ({
+  text: titleCase(element.text),
+  image: titulo,
+}))
 
 const prizeList = [
   ...newPrizes,
@@ -56,7 +61,7 @@ const Wheel = (props) => {
 
   const handlePrizeDefined = () => {
     setWinner(prizeList[prizeIndex].text);
-    delete prizes[prizeList[prizeIndex]];
+    listUpdated = delete prizes[prizeList[prizeIndex]];
     setTitle("Empezar de nuevo");
   };
 
