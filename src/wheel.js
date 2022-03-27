@@ -56,6 +56,7 @@ const Wheel = (props) => {
 
   const handlePrizeDefined = () => {
     setWinner(prizeList[prizeIndex].text);
+    delete prizes[prizeList[prizeIndex]];
     setTitle("Empezar de nuevo");
   };
 
