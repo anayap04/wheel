@@ -9,6 +9,8 @@
     "react": "^17.0.2",
     "react-confetti": "^6.0.1",
     "react-dom": "^17.0.2",
+    "react-flexbox-grid": "^2.1.2",
+    "react-modal": "^3.14.4",
     "react-roulette-pro": "^2.0.1",
     "react-scripts": "5.0.0",
     "react-use": "^17.3.2",

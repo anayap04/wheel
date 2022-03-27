@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: rgba(2, 36, 153, 0.7);
 }
 
 .App-logo {
@@ -7,37 +8,47 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.app-container {
+  width: "100%"; 
+  height: "100%";
+  background-color: rgba(2, 36, 153, 0.7);
 }
 
-.app-info {
-  background-color: #282c34;
-  min-height: 100vh;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 
+.app-info {
+  flex-direction: column;
+  height: fit-content;
+  font-size: 14px !important;
+  padding-top: 10vh;
+}
+
+.winner-container {
+  position: absolute;
+  top: 25vh;
+  z-index: 10;
+  height: 60vh;
+  width: 200vh;
+  padding-top: 10vh;
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 .winner-title {
   color: yellow;
-  font-size: 120px;
-  margin: auto;
-  width: 50%;
-  justify-content: center;
-  padding: 10px;
+  font-size: 50px;
+  font-family: BEWISE;
+  text-align: center;
+  margin-top: 20px;
+  margin-left: -390px;
 }
 
 .winner {
   color: white;
-  font-size: 120px;
+  font-size: 60px;
   margin: auto;
+  margin-left: 400px;
   width: 50%;
-  justify-content: center;
   padding: 10px;
+  padding-left: 180px;
 }
 
 .img-logo {
@@ -46,3 +57,16 @@
   margin-right: auto;
   width: 40%;
 }
+
+.col-xs-12 {
+  flex-basis: 50%;
+}
+
+.col-xs-2 {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+.className-for-plize-list {
+  font-size: 16px;
+}
+

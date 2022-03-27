@@ -1,0 +1,18 @@
+.roulette-pro-graceful-lines-prize-item-content-text {
+  margin: 0;
+  word-break: break-word;
+  font-weight: 700;
+  font-size: 12px;
+}
+.roulette-pro-graceful-lines-prize-item::after {
+  margin-right: -2px;
+  right: 0;
+}
+
+.roulette-pro-graceful-lines-prize-item::before {
+  margin-left: 0px;
+  left: 0;
+}
+.roulette-pro-graceful-lines-design-bottom-line {
+  bottom: -5;
+}
