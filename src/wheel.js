@@ -5,7 +5,7 @@ import RoulettePro from "react-roulette-pro";
 import "react-roulette-pro/dist/index.css";
 
 import prizes from "./csvjson.json";
-import titulo from "./assets/img/logoME.png";
+import titulo from "./assets/img/gigos.png";
 import "./wheel.css"
 
 const reproductionArray = (array = [], length = 0) => [
