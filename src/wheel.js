@@ -5,10 +5,8 @@ import RoulettePro from "react-roulette-pro";
 import "react-roulette-pro/dist/index.css";
 
 import prizes from "./csvjson.json";
-import titulo from "./assets/img/gigos.png";
+import titulo from "./assets/img/logoME.png";
 import "./wheel.css"
-
-let listUpdated = []
 
 const reproductionArray = (array = [], length = 0) => [
   ...Array(length)
@@ -27,13 +25,15 @@ function titleCase(str) {
   return splitStr.join(' ');
 }
 
-const newPrizes = listUpdated ? listUpdated.map((element) => ({
-  text: titleCase(element.text),
-  image: titulo,
-})) : prizes.map((element) => ({
+const newPrizes = prizes.map((element) => ({
   text: titleCase(element.text),
   image: titulo,
 }))
+
+
+function generateRandomInteger(max) {
+  return Math.floor(Math.random() * max) + 1;
+}
 
 const prizeList = [
   ...newPrizes,
@@ -42,15 +42,13 @@ const prizeList = [
   ...reproductionArray(prizes, prizes.length),
 ];
 
-function generateRandomInteger(max) {
-  return Math.floor(Math.random() * max) + 1;
-}
-
 const Wheel = (props) => {
   const { setWinner } = props;
   const [start, setStart] = useState(false);
+  const [listUpdated, setListUpdated] = useState([]);
   const [prizeIndex, setPrizeIndex] = useState();
   const [title, setTitle] = useState("Girar");
+  const listFiltered = prizeList ? prizeList.filter(element => !listUpdated.includes(element)) : prizeList
 
   const handleStart = () => {
     setStart((prevState) => !prevState);
@@ -60,19 +58,21 @@ const Wheel = (props) => {
   };
 
   const handlePrizeDefined = () => {
-    setWinner(prizeList[prizeIndex].text);
-    listUpdated = delete prizes[prizeList[prizeIndex]];
+
+    setWinner(listFiltered[prizeIndex].text);
+    console.log(newPrizes[prizeIndex], listFiltered.length, listUpdated)
+    setListUpdated(oldArr => [...oldArr, listFiltered[prizeIndex]]);
     setTitle("Empezar de nuevo");
   };
 
   return (
     <div style={{ fontSize: 16 }}>
       <RoulettePro
-        prizes={prizeList}
+        prizes={listFiltered}
         prizeIndex={prizeIndex}
         designOptions={{
-          prizeItemWidth: 90,
-          prizeItemHeight: 90,
+          prizeItemWidth: 150,
+          prizeItemHeight: 150,
         }}
         style={{
           fontSize: 14,
@@ -89,7 +89,7 @@ const Wheel = (props) => {
             width: "100%",
             height: "42px",
             background: "transparent",
-            color: "white",
+            color: "#730058",
             fontSize: "36px",
             border: "transparent",
           }}

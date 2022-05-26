@@ -1,54 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=Bad+Script&display=swap");
+
 .App {
   text-align: center;
-  background-color: rgba(2, 36, 153, 0.7);
+  background-image: url("../src/assets/img/background.jpeg");
+  width: 100vh;
 }
 
 .App-logo {
-  height: 40vmin;
   pointer-events: none;
 }
 
 .app-container {
-  width: "100%"; 
+  width: "100%";
   height: "100%";
-  background-color: rgba(2, 36, 153, 0.7);
 }
-
 
 .app-info {
   flex-direction: column;
   height: fit-content;
+  align-items: center;
   font-size: 14px !important;
-  padding-top: 10vh;
+  padding-top: 25vh;
+  padding-bottom: 42vh;
+  background-image: url("../src/assets/img/background.jpeg");
 }
 
 .winner-container {
   position: absolute;
-  top: 25vh;
   z-index: 10;
-  height: 60vh;
-  width: 200vh;
-  padding-top: 10vh;
+  height: 120vh;
   background-color: rgba(0, 0, 0, 0.7);
+  align-items: center;
+  align-content: center;
+  width: 200vh;
 }
 
 .winner-title {
-  color: yellow;
-  font-size: 50px;
-  font-family: BEWISE;
+  color: #ffb8ee;
+  font-size: 200px;
+  font-family: "Bad Script", cursive;
   text-align: center;
-  margin-top: 20px;
-  margin-left: -390px;
+  margin-left: -140px;
 }
 
 .winner {
   color: white;
-  font-size: 60px;
-  margin: auto;
-  margin-left: 400px;
-  width: 50%;
-  padding: 10px;
-  padding-left: 180px;
+  font-size: 160px;
+  margin-left: 10vh;
+  top: 50;
+  width: 165vh;
+  text-align: center;
 }
 
 .img-logo {
@@ -58,15 +59,15 @@
   width: 40%;
 }
 
-.col-xs-12 {
-  flex-basis: 50%;
-}
-
-.col-xs-2 {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
 .className-for-plize-list {
-  font-size: 16px;
+  font-size: 18px;
 }
 
+.title-style {
+  font-size: 160px;
+  color: #730058;
+  align-items: "center";
+  font-weight: 700;
+  font-family: "Bad Script", cursive;
+  text-align: center;
+}
