@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import RoulettePro from "react-roulette-pro";
 
 import "react-roulette-pro/dist/index.css";
 
 import prizes from "./csvjson.json";
-import titulo from "./assets/img/gigos.png";
-import "./wheel.css"
+import titulo from "./assets/img/logo_blc.png";
+import "./wheel.css";
+import { getInfo, updateInfo } from "./utils/services";
+import { mapValues } from "./utils/functions";
 
 const reproductionArray = (array = [], length = 0) => [
   ...Array(length)
@@ -14,33 +16,9 @@ const reproductionArray = (array = [], length = 0) => [
     .map(() => array[Math.floor(Math.random() * array.length)]),
 ];
 
-function titleCase(str) {
-  var splitStr = str.toLowerCase().split(' ');
-  for (var i = 0; i < splitStr.length; i++) {
-    // You do not need to check if i is larger than splitStr length, as your for does that for you
-    // Assign it back to the array
-    splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
-  }
-  // Directly return the joined string
-  return splitStr.join(' ');
-}
-
-const newPrizes = prizes.map((element) => ({
-  text: titleCase(element.text),
-  image: titulo,
-}))
-
-
 function generateRandomInteger(max) {
   return Math.floor(Math.random() * max) + 1;
 }
-
-const prizeList = [
-  ...newPrizes,
-  ...reproductionArray(prizes, prizes.length * 2),
-  ...newPrizes,
-  ...reproductionArray(prizes, prizes.length),
-];
 
 const Wheel = (props) => {
   const { setWinner } = props;
@@ -48,27 +26,57 @@ const Wheel = (props) => {
   const [listUpdated, setListUpdated] = useState([]);
   const [prizeIndex, setPrizeIndex] = useState();
   const [title, setTitle] = useState("Girar");
-  const listFiltered = prizeList ? prizeList.filter(element => !listUpdated.includes(element)) : prizeList
+  const [list, setList] = useState([]);
+  const [updated, setUpdated] = useState(false);
+
+  useEffect(() => {
+    if (listUpdated.length === 0) {
+      getInfo().then((value) => {
+        const arrayValues = mapValues(value?.data);
+        const newFiltered = arrayValues
+          ? arrayValues.filter((element) => !listUpdated.includes(element))
+          : arrayValues;
+        const finalArr = [
+          ...newFiltered,
+          ...reproductionArray(newFiltered, newFiltered.length * 2),
+          ...newFiltered,
+          ...reproductionArray(newFiltered, newFiltered.length * 2),
+        ];
+        setList(finalArr);
+      });
+    } else {
+      updateInfo(listUpdated);
+      setListUpdated([]);
+    }
+  }, [updated]);
+
+  setInterval(() => {
+    setUpdated(!updated);
+  }, 1.2e6);
+
+  const listFiltered = list
+    ? list.filter((element) => !listUpdated.includes(element))
+    : list;
 
   const handleStart = () => {
     setStart((prevState) => !prevState);
     setTitle("Girar");
     setWinner(null);
-    setPrizeIndex(generateRandomInteger(prizes.length));
+    setPrizeIndex(generateRandomInteger(list.length));
   };
 
   const handlePrizeDefined = () => {
-
     setWinner(listFiltered[prizeIndex].text);
-    console.log(newPrizes[prizeIndex], listFiltered.length, listUpdated)
-    setListUpdated(oldArr => [...oldArr, listFiltered[prizeIndex]]);
+    console.log(listFiltered[prizeIndex]);
+    listUpdated.push(listFiltered[prizeIndex]);
+    console.log(listUpdated);
     setTitle("Empezar de nuevo");
   };
 
   return (
     <div style={{ fontSize: 16 }}>
       <RoulettePro
-        prizes={listFiltered}
+        prizes={list && listFiltered}
         prizeIndex={prizeIndex}
         designOptions={{
           prizeItemWidth: 150,
@@ -89,7 +97,7 @@ const Wheel = (props) => {
             width: "100%",
             height: "42px",
             background: "transparent",
-            color: "#730058",
+            color: "#CFCCC5",
             fontSize: "36px",
             border: "transparent",
           }}
