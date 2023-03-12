@@ -2,7 +2,7 @@ import axios from "axios";
 export const getInfo = () => {
   return axios
     .get(
-      "https://seminario-blc.online/api-php-react/get_info.php?evento=9&isWheel=true",
+      "https://seminario-blc.online/api-php-react/get_info.php?evento=5&isWheel=true",
       {
         headers: {
           "Content-Type": "application/json",

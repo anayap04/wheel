@@ -11,7 +11,7 @@ const PageWheel = () => {
   
   const title = () => (
     <div>
-      <div className="winner-title"> {"Felicidades"} </div>
+      <div className="winner-title"> {"El número ganador es"} </div>
       <div className="winner">{winner}</div>
       <button
         style={{
@@ -36,8 +36,8 @@ const PageWheel = () => {
       <div>
         <div className="app-info">
           <div className="title-container">
-            <img src={logo} width={900} />
-            <p className="title-style">{"Ruleta de Oro"}</p>
+            <img src={logo} width={700} />
+            <p className="title-style">{"Sigue tus sueños"}</p>
           </div>
           {winner ? <Confetti width={width} height={height} /> : null}
           <Wheel setWinner={setWinner} />

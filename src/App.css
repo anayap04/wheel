@@ -1,9 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Bad+Script&display=swap");
 
 body {
-  background-image: url("../src/assets/img/background.jpeg");
-  width: 100%;
-  height: 100%;
+  background-image: url("../src/assets/img/background.png");
+  background-size: contain;
 
 }
 
@@ -17,7 +16,7 @@ body {
 }
 
 .app-container {
-  width: 100%;
+  width: 100vw;
   height: 100%;
 }
 
@@ -28,7 +27,9 @@ body {
   font-size: 14px !important;
   padding-top: 25vh;
   padding-bottom: 42vh;
-  background-image: url("../src/assets/img/background.jpeg");
+  background-image: url("../src/assets/img/background.png");
+  background-size: 100%;
+  width: 100vw;
 }
 
 .winner-container {
@@ -45,13 +46,13 @@ body {
 }
 
 .winner-title {
-  color: #CFCCC5;
-  font-size: 200px;
+  color: #f9ea90;
+  font-size: 120px;
   text-align: center;
 }
 
 .winner {
-  color: #d6b073;
+  color: #ceb4a7;
   font-size: 160px;
   top: 50;
   text-align: center;
@@ -70,7 +71,7 @@ body {
 
 .title-style {
   font-size: 60px;
-  color: #cab966;
+  color: #ceb4a7;
   align-items: "center";
   font-weight: 700;
   font-family: sans-serif;

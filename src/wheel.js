@@ -3,11 +3,10 @@ import React, { useCallback, useEffect, useState } from "react";
 import RoulettePro from "react-roulette-pro";
 
 import "react-roulette-pro/dist/index.css";
+import name from '../src/csvjson.json'
 
-import prizes from "./csvjson.json";
-import titulo from "./assets/img/logo_blc.png";
 import "./wheel.css";
-import { getInfo, updateInfo } from "./utils/services";
+
 import { mapValues } from "./utils/functions";
 
 const reproductionArray = (array = [], length = 0) => [
@@ -31,8 +30,9 @@ const Wheel = (props) => {
 
   useEffect(() => {
     if (listUpdated.length === 0) {
-      getInfo().then((value) => {
-        const arrayValues = mapValues(value?.data);
+        const value = name
+        console.log(value)
+        const arrayValues = mapValues(value);
         const newFiltered = arrayValues
           ? arrayValues.filter((element) => !listUpdated.includes(element))
           : arrayValues;
@@ -43,9 +43,8 @@ const Wheel = (props) => {
           ...reproductionArray(newFiltered, newFiltered.length * 2),
         ];
         setList(finalArr);
-      });
+      
     } else {
-      updateInfo(listUpdated);
       setListUpdated([]);
     }
   }, [updated]);
@@ -67,7 +66,6 @@ const Wheel = (props) => {
 
   const handlePrizeDefined = () => {
     setWinner(listFiltered[prizeIndex].text);
-    console.log(listFiltered[prizeIndex]);
     listUpdated.push(listFiltered[prizeIndex]);
     console.log(listUpdated);
     setTitle("Empezar de nuevo");
