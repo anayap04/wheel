@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import RoulettePro from "react-roulette-pro";
 
@@ -47,7 +47,7 @@ const Wheel = (props) => {
     } else {
       setListUpdated([]);
     }
-  }, [updated]);
+  }, [updated, listUpdated]);
 
   setInterval(() => {
     setUpdated(!updated);

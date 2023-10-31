@@ -1,9 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import "./App.css";
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import Wheel from "./wheel";
-import useWindowSize from "react-use/lib/useWindowSize";
-import Confetti from "react-confetti";
 import PageWheel from "./PageWheel";
 
 const App = () => {
